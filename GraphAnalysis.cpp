@@ -4,6 +4,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_set>
+#include <string>
 
 using namespace std;
 
@@ -27,21 +28,21 @@ public:
     vector<pair<string, int>> findTopN(string name, int n);
 
     void findTopNHelper(string curr,
-                        int n,
-                        unordered_set<string> &visited,
-                        vector<pair<string, int>> &topN);
+        int n,
+        unordered_set<string>& visited,
+        vector<pair<string, int>>& topN);
 
-    vector<pair<string, int>> findPath(string source, string dest);
+    vector<string> findPath(string source, string dest);
 };
 
 int main()
 {
     ChessGraph a = ChessGraph("Jan2013.csv");
 
-    vector<pair<string, int>> ans = a.findTopN("Romoda", 10);
+    vector<string> ans = a.findPath("BFG9k", "mamalak");
 
-    for (pair<string, int> a: ans)
-        cout << a.first << "|" << a.second << endl;
+    for (string a : ans)
+        cout << a << "|";
     return 0;
 }
 
@@ -82,25 +83,25 @@ vector<pair<string, int>> ChessGraph::findTopN(string name, int n)
 }
 
 void ChessGraph::findTopNHelper(string curr,
-                                int n,
-                                unordered_set<string> &visited,
-                                vector<pair<string, int>> &topN)
+    int n,
+    unordered_set<string>& visited,
+    vector<pair<string, int>>& topN)
 {
     if (visited.find(curr) != visited.end())
         return;
 
     visited.emplace(curr);
 
-    for (pair<string, int> a: internalGraph[curr])
+    for (pair<string, int> a : internalGraph[curr])
     {
         int found = -1;
-        for(int i = 0; i < topN.size(); i++)
+        for (int i = 0; i < topN.size(); i++)
         {
-            if(topN[i].first == a.first)
+            if (topN[i].first == a.first)
                 found = i;
         }
 
-        if(found == -1)
+        if (found == -1)
             topN.push_back(a);
         else
             topN[found].second = max(a.second, topN[found].second);
@@ -110,7 +111,7 @@ void ChessGraph::findTopNHelper(string curr,
             int min = 0;
             for (int i = 0; i < topN.size(); i++)
             {
-                if(topN[i].second < topN[min].second)
+                if (topN[i].second < topN[min].second)
                     min = i;
             }
 
@@ -118,11 +119,48 @@ void ChessGraph::findTopNHelper(string curr,
         }
     }
 
-    for (pair<string, int> a: internalGraph[curr])
+    for (pair<string, int> a : internalGraph[curr])
         findTopNHelper(a.first, n, visited, topN);
 }
 
-vector<pair<string, int>> ChessGraph::findPath(string source, string dest)
+vector<string> ChessGraph::findPath(string source, string dest)
 {
+    unordered_map<string, vector<string>> predecessors = unordered_map<string, vector<string>>();
+    predecessors[source] = vector<string>();
 
+    unordered_set<string> visited = unordered_set<string>();
+    visited.emplace(source);
+
+    queue<string> q = queue<string>();
+
+    q.push(source);
+
+    while (!q.empty())
+    {
+        string curr = q.front();
+
+        for (int i = 0; i < internalGraph[curr].size(); i++)
+        {
+            string target = internalGraph[curr][i].first;
+            
+            if (visited.find(target) == visited.end())
+            {
+                q.push(target);
+                visited.insert(target);
+
+                if (predecessors[target].empty() || target == source)
+                {
+                    if (predecessors[curr].empty() || predecessors[target].size() < predecessors[curr].size())
+                    {
+                        predecessors[curr] = predecessors[target];
+                        predecessors[curr].push_back(curr);
+                    }
+                }
+            }
+        }
+
+        q.pop();
+    }
+
+    return predecessors[dest];
 }
