@@ -1,10 +1,11 @@
 #include "chesselo.h"
-
-ChessELO::ChessELO(QWidget *parent) :
+#include "GraphAnalysis.h"
+ChessELO::ChessELO(QString _filename, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ChessELO)
 {
     ui->setupUi(this);
+    filename = _filename;
 
     connect(ui->pushButton_Enter, SIGNAL(clicked()), this, SLOT(on_pushButton_Enter_clicked()));
     connect(ui->pushButton_Exit, SIGNAL(clicked()), this, SLOT(on_pushButton_Exit_clicked()));
