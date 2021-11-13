@@ -24,9 +24,9 @@ public:
     vector<pair<string, int>> findTopN(string name, int n);
 
     void findTopNHelper(string curr,
-        int n,
-        unordered_set<string>& visited,
-        vector<pair<string, int>>& topN);
+                        int n,
+                        unordered_set<string>& visited,
+                        vector<pair<string, int>>& topN);
 
-    vector<string> findPath(string source, string dest);
+    vector<vector<string>> findPath(string source, vector<string> targets);
 };

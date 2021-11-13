@@ -5,39 +5,11 @@
 #include <queue>
 #include <unordered_set>
 #include <string>
-#include <GraphAnalysis.h>
+#include <algorithm>
+#include "GraphAnalysis.h"
 
 using namespace std;
 
-<<<<<<< HEAD
-=======
-class ChessGraph
-{
-private:
-    unordered_map<string, vector<pair<string, int>>> internalGraph;
-
-    class compareEdges
-    {
-    public:
-        bool operator()(pair<string, int> lhs, pair<string, int> rhs)
-        {
-            return lhs.second > rhs.second;
-        }
-    };
-
-public:
-    ChessGraph(string filename);
-
-    vector<pair<string, int>> findTopN(string name, int n);
-
-    void findTopNHelper(string curr,
-                        int n,
-                        unordered_set<string>& visited,
-                        vector<pair<string, int>>& topN);
-
-    vector<vector<string>> findPath(string source, vector<string> targets);
-};
->>>>>>> c6f2723e9b9e9dd049a45b38da88459a1459a014
 
 int main()
 {
