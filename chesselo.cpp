@@ -21,10 +21,41 @@ void ChessELO::on_pushButton_Enter_clicked()
         ui->separationLabel->setText("No data available");
     }
     */
+    
+    
+    vector<pair<string, int>> top = a.findTopN(/*ADD INPUT STRING HERE*/"", 1);
+    vector<string> dests = vector<string>();
+    for (pair<string, int> b : top)
+    {
+        dests.push_back(b.first);
+    }
+    vector<vector<string>> paths = a.findPath(src, dests);
+    
+    string playerName;
+    if(!top10.empty())
+        playerName = top10[0].first;
+    else
+        playerName = "None";
+    
+    int elo;
+    if(!top10.empty())
+        elo = top10[0].second;
+    else
+        elo = 0;
+    
+    int sep;
+    if(!paths.empty())
+        sep = paths[0].size();
+    else
+        sep = 0;
+    
     ui->nameLabel->setText(playerName);
-    ui->ELOLabel->setText(playerName);
-    int i = 3;
-    QString separation = QString::number(i);
+    
+    QString separation = QString::number(elo);
+    playerElo += " rating points";
+    ui->ELOLabel->setText(playerElo);
+    
+    QString separation = QString::number(sep);
     separation += " players in between";
     ui->separationLabel_2->setText(separation);
 }
