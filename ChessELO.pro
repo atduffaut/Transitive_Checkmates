@@ -10,11 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     GraphAnalysis.cpp \
+    GraphAnalysis_QT.cpp \
     main.cpp \
     chesselo.cpp
 
 HEADERS += \
     GraphAnalysis.h \
+    GraphAnalysis_QT.h \
     chesselo.h
 
 FORMS += \

@@ -1,5 +1,5 @@
 #include "chesselo.h"
-#include "GraphAnalysis.h"
+#include "GraphAnalysis_QT.h"
 ChessELO::ChessELO(QString _filename, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ChessELO)
