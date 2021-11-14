@@ -104,7 +104,7 @@ color: rgb(0, 170, 255)</string>
      <rect>
       <x>250</x>
       <y>330</y>
-      <width>51</width>
+      <width>201</width>
       <height>24</height>
      </rect>
     </property>
@@ -179,7 +179,7 @@ color: rgb(0, 170, 255)</string>
      <string>Highest ELO Player:</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>139</x>

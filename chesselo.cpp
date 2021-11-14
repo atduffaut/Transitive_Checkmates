@@ -21,25 +21,26 @@ void ChessELO::on_pushButton_Enter_clicked()
         ui->separationLabel->setText("No data available");
     }
     */
+    ChessGraph a(filename.toStdString());
     
     
-    vector<pair<string, int>> top = a.findTopN(/*ADD INPUT STRING HERE*/"", 1);
+    vector<pair<string, int>> top = a.findTopN(playerName.toStdString(), 1);
     vector<string> dests = vector<string>();
     for (pair<string, int> b : top)
     {
         dests.push_back(b.first);
     }
-    vector<vector<string>> paths = a.findPath(src, dests);
+    vector<vector<string>> paths = a.findPath(playerName.toStdString(), dests);
     
-    string playerName;
-    if(!top10.empty())
-        playerName = top10[0].first;
+    string topName;
+    if(!top.empty())
+        topName = top[0].first;
     else
-        playerName = "None";
+        topName = "None";
     
     int elo;
-    if(!top10.empty())
-        elo = top10[0].second;
+    if(!top.empty())
+        elo = top[0].second;
     else
         elo = 0;
     
@@ -49,9 +50,9 @@ void ChessELO::on_pushButton_Enter_clicked()
     else
         sep = 0;
     
-    ui->nameLabel->setText(playerName);
+    ui->nameLabel->setText(QString::fromStdString(topName));
     
-    QString separation = QString::number(elo);
+    QString playerElo = QString::number(elo);
     playerElo += " rating points";
     ui->ELOLabel->setText(playerElo);
     

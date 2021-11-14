@@ -2,8 +2,6 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_chesselo.h"
-#include "GraphAnalysis.h"
-
 class ChessELO : public QMainWindow
 {
     Q_OBJECT
