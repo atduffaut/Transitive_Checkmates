@@ -44,11 +44,18 @@ void ChessELO::on_pushButton_Enter_clicked()
     else
         elo = 0;
     
-    int sep;
-    if(!paths.empty())
-        sep = paths[0].size();
+    Qstring path = "";
+    if (!paths.empty())
+        path = "No path found";
     else
-        sep = 0;
+    {
+        for (int i = 0; i < paths[0].size() - 1; i++)
+        {
+            path += paths[0].first;
+            path += " -> ";
+        }
+        path += paths[0][paths[0].size() - 1];
+    }
     
     ui->nameLabel->setText(QString::fromStdString(topName));
     
@@ -56,9 +63,7 @@ void ChessELO::on_pushButton_Enter_clicked()
     playerElo += " rating points";
     ui->ELOLabel->setText(playerElo);
     
-    QString separation = QString::number(sep);
-    separation += " players in between";
-    ui->separationLabel_2->setText(separation);
+    ui->separationLabel_2->setText(path);
 }
 
 void ChessELO::on_pushButton_Exit_clicked()
