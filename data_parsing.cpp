@@ -14,7 +14,7 @@ int main() {
     bool whiteWin = false;
     bool blackWin = false;
     bool active = false;
-    string filename = "lichess_db_standard_rated_2013-01";
+    string filename = "C:/Users/alexd/Downloads/lichess_db_standard_rated_2021-10.pgn/lichess_db_standard_rated_2021-10";
     ifstream inFile(filename + ".pgn");
     ofstream outFile(filename + ".csv");
     if (inFile.is_open()) {

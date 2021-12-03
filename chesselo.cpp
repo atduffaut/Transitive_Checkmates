@@ -8,7 +8,6 @@ ChessELO::ChessELO(QString _filename, QWidget *parent) :
     filename = _filename;
 
     connect(ui->pushButton_Enter, SIGNAL(clicked()), this, SLOT(on_pushButton_Enter_clicked()));
-    connect(ui->pushButton_Exit, SIGNAL(clicked()), this, SLOT(on_pushButton_Exit_clicked()));
 }
 
 void ChessELO::on_pushButton_Enter_clicked()
@@ -44,14 +43,14 @@ void ChessELO::on_pushButton_Enter_clicked()
     else
         elo = 0;
     
-    Qstring path = "";
-    if (!paths.empty())
+    string path = "";
+    if (paths.empty())
         path = "No path found";
     else
     {
         for (int i = 0; i < paths[0].size() - 1; i++)
         {
-            path += paths[0].first;
+            path += paths[0][i];
             path += " -> ";
         }
         path += paths[0][paths[0].size() - 1];
@@ -63,7 +62,7 @@ void ChessELO::on_pushButton_Enter_clicked()
     playerElo += " rating points";
     ui->ELOLabel->setText(playerElo);
     
-    ui->separationLabel_2->setText(path);
+    ui->separationLabel_2->setText(QString::fromStdString(path));
 }
 
 void ChessELO::on_pushButton_Exit_clicked()
