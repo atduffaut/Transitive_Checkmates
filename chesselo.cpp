@@ -12,6 +12,8 @@ ChessELO::ChessELO(QString _filename, QWidget *parent) :
 
 void ChessELO::on_pushButton_Enter_clicked()
 {
+    auto start = chrono::high_resolution_clock::now();
+
     QString playerName = ui->lineEdit_Name->text();
     /*if (playerName not found)
     {
@@ -63,6 +65,12 @@ void ChessELO::on_pushButton_Enter_clicked()
     ui->ELOLabel->setText(playerElo);
     
     ui->separationLabel_2->setText(QString::fromStdString(path));
+
+    auto end = chrono::high_resolution_clock::now();
+
+    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+
+    cout << "Request execution time: " << duration.count() << " ms" << endl;
 }
 
 void ChessELO::on_pushButton_Exit_clicked()

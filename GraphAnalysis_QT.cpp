@@ -56,6 +56,7 @@ ChessGraph::ChessGraph(string filename)
     if(!inputFile.open(QIODevice::ReadOnly)) {
         cout << "error" << endl;
     }
+
     while (!inputFile.atEnd())
     {
         line_temp = inputFile.readLine();
