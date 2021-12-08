@@ -15,11 +15,14 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    string filename;
+    cin >> filename;
+
     QApplication a(argc, argv);
 
     auto start = chrono::high_resolution_clock::now();
 
-    ChessELO w("/Users/matthewtave/Transitive_Checkmates/Jan2013.csv");
+    ChessELO w(QString::fromStdString(filename));
     w.show();
 
     auto end = chrono::high_resolution_clock::now();
@@ -28,6 +31,6 @@ int main(int argc, char *argv[])
 
     cout << "Graph Generation and Window Opening: " << duration.count() << " ms" << endl;
 
+
     return a.exec();
 }
-//change in the git repository

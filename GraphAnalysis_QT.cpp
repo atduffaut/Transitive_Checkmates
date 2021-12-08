@@ -66,7 +66,7 @@ void ChessGraph::findTopNHelper(string curr,
 
     visited.emplace(curr);
 
-    for (pair<string, int> a : internalGraph[curr])
+    for (pair<string, int>& a : internalGraph[curr])
     {
         int found = -1;
         for (unsigned int i = 0; i < topN.size(); i++)
@@ -93,7 +93,7 @@ void ChessGraph::findTopNHelper(string curr,
         }
     }
 
-    for (pair<string, int> a : internalGraph[curr])
+    for (pair<string, int>& a : internalGraph[curr])
         findTopNHelper(a.first, n, visited, topN);
 }
 
@@ -135,7 +135,7 @@ vector<vector<string>> ChessGraph::findPath(string source, vector<string> dests)
 
     vector<vector<string>> ans = vector<vector<string>>();
 
-    for(string a: dests)
+    for(string& a: dests)
         ans.push_back(predecessors[a]);
 
     return ans;
