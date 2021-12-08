@@ -12,45 +12,13 @@
 
 using namespace std;
 
-
-//int main()
-//{
-//    ChessGraph a = ChessGraph("Jan2013.csv");
-
-//    string src = "neto391994";
-//    int N = 10;
-
-//    vector<pair<string, int>> top = a.findTopN(src, N);
-
-//    vector<string> dests = vector<string>();
-//    for (pair<string, int> b : top)
-//    {
-//        cout << b.first << ": "<< b.second << endl;
-//        dests.push_back(b.first);
-//    }
-
-//    cout << endl << endl;
-
-
-//    vector<vector<string>> paths = a.findPath(src, dests);
-
-//    for(vector<string> b: paths)
-//    {
-//        for(string c: b)
-//            cout << c << " ";
-//        cout << endl;
-//    }
-
-//    return 0;
-//}
-
 //Constructor for the ChessGraph, reads in the file and makes the graph
-ChessGraph::ChessGraph(string filename)
+ChessGraph::ChessGraph(QString filename)
 {
     internalGraph = unordered_map<string, vector<pair<string, int>>>();
 
 //    ifstream inputFile(filename);
-    QFile inputFile("Jan2013.csv");
+    QFile inputFile(filename);
     QString line_temp;
     string line;
     if(!inputFile.open(QIODevice::ReadOnly)) {
