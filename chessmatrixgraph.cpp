@@ -1,33 +1,56 @@
-#include <iostream>
-#include <fstream>
+#include "chessmatrixgraph.h"
+#include <set>
+#include <cmath>
 #include <unordered_map>
-#include <vector>
 #include <queue>
-#include <unordered_set>
-#include <string>
-#include <algorithm>
-#include <QFile>
-#include <QApplication>
-#include "GraphAnalysis_QT.h"
 
-using namespace std;
-
-//Constructor for the ChessGraph, reads in the file and makes the graph
-ChessGraph::ChessGraph(QString filename)
+ChessMatrixGraph::ChessMatrixGraph(QString filename)
 {
-    internalGraph = unordered_map<string, vector<pair<string, int>>>();
-
-//    ifstream inputFile(filename);
     QFile inputFile(filename);
     QString line_temp;
     string line;
+
     if(!inputFile.open(QIODevice::ReadOnly)) {
         cout << "error" << endl;
     }
 
+    set<string> namesSet = set<string>();
+
+
+
     while (!inputFile.atEnd())
     {
         line_temp = inputFile.readLine();
+        line = line_temp.toStdString();
+
+        string from = line.substr(0, line.find(","));
+        line = line.substr(from.length() + 1);
+
+        string to = line.substr(0, line.find(","));
+        line = line.substr(to.length() + 1);
+
+        namesSet.insert(from);
+        namesSet.insert(to);
+    }
+
+    int i = 0;
+    for(auto it = namesSet.begin(); it != namesSet.end(); ++it)
+    {
+        names[*it] = i;
+        nums[i] = *it;
+        i++;
+    }
+    edges = vector<vector<int>>(names.size(), vector<int>(names.size(), -1));
+    inputFile.close();
+
+    QFile inputFile2(filename);
+    if(!inputFile2.open(QIODevice::ReadOnly)) {
+        cout << "error" << endl;
+    }
+
+    while (!inputFile2.atEnd())
+    {
+        line_temp = inputFile2.readLine();
         line = line_temp.toStdString();
         string from = line.substr(0, line.find(","));
         line = line.substr(from.length() + 1);
@@ -37,48 +60,53 @@ ChessGraph::ChessGraph(QString filename)
 
         if (line[0] == '?')
             continue;
-        int weight = stoi(line.substr(0, line.find(",")));
-        pair<string, int> temp = pair<string, int>(to, weight);
-        internalGraph[from].push_back(temp);
-    }
-    inputFile.close();
-};
 
-vector<pair<string, int>> ChessGraph::findTopN(string name, int n)
+        int weight = stoi(line.substr(0, line.find(",")));
+
+        edges[names[from]][names[to]] = max(weight, edges[names[from]][names[to]]);
+    }
+    inputFile2.close();
+}
+
+vector<pair<string, int>> ChessMatrixGraph::findTopN(string name, int n)
 {
     vector<pair<string, int>> topN = vector<pair<string, int>>();
     unordered_set<string> visited = unordered_set<string>();
+
+    cout << "1" << endl;
 
     findTopNHelper(name, n, visited, topN);
 
     sort(topN.begin(), topN.end(), compareEdges());
 
+
+    cout << "Done with TopN: " << topN[0].first << " " << topN[0].second << endl;
     return topN;
 }
 
-void ChessGraph::findTopNHelper(string curr,
+void ChessMatrixGraph::findTopNHelper(string curr,
                                 unsigned int n,
                                 unordered_set<string>& visited,
                                 vector<pair<string, int>>& topN)
 {
-    if (visited.find(curr) != visited.end())
-        return;
+    visited.insert(curr);
 
-    visited.emplace(curr);
-
-    for (pair<string, int>& a : internalGraph[curr])
+    for (unsigned int i = 0; i < edges[names[curr]].size(); i++)
     {
+        if(edges[names[curr]][i] == -1)
+            continue;
+
         int found = -1;
-        for (unsigned int i = 0; i < topN.size(); i++)
+        for (unsigned int j = 0; j < topN.size(); j++)
         {
-            if (topN[i].first == a.first)
-                found = i;
+            if (topN[j].first == nums[j])
+                found = j;
         }
 
         if (found == -1)
-            topN.push_back(a);
+            topN.push_back(pair<string, int>(nums[i], edges[names[curr]][i]));
         else
-            topN[found].second = max(a.second, topN[found].second);
+            topN[found].second = max(edges[i][names[curr]], topN[found].second);
 
         if (topN.size() > n)
         {
@@ -93,11 +121,18 @@ void ChessGraph::findTopNHelper(string curr,
         }
     }
 
-    for (pair<string, int>& a : internalGraph[curr])
-        findTopNHelper(a.first, n, visited, topN);
+    for (unsigned int i = 0; i < edges[names[curr]].size(); i++)
+    {
+        if(edges[names[curr]][i] == -1)
+            continue;
+        if(visited.find(nums[i]) != visited.end())
+            continue;
+        findTopNHelper(nums[i], n, visited, topN);
+    }
+
 }
 
-vector<vector<string>> ChessGraph::findPath(string source, vector<string> dests)
+vector<vector<string>> ChessMatrixGraph::findPath(string source, vector<string> dests)
 {
     unordered_map<string, vector<string>> predecessors = unordered_map<string, vector<string>>();
     predecessors[source] = vector<string>{source};
@@ -112,10 +147,12 @@ vector<vector<string>> ChessGraph::findPath(string source, vector<string> dests)
     while (!q.empty())
     {
         string curr = q.front();
-
-        for (unsigned int i = 0; i < internalGraph[curr].size(); i++)
+        for (unsigned int i = 0; i < edges[names[curr]].size(); i++)
         {
-            string target = internalGraph[curr][i].first;
+            if (edges[names[curr]][i] == -1)
+                continue;
+
+            string target = nums[i];
 
             if (visited.find(target) == visited.end())
             {

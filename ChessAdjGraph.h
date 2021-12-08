@@ -6,7 +6,7 @@
 #include <QApplication>
 using namespace std;
 
-class ChessGraph
+class ChessAdjGraph
 {
 private:
     unordered_map<string, vector<pair<string, int>>> internalGraph;
@@ -21,7 +21,7 @@ private:
     };
 
 public:
-    ChessGraph(QString filename);
+    ChessAdjGraph(QString filename);
 
     vector<pair<string, int>> findTopN(string name, int n);
 

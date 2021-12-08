@@ -1,5 +1,6 @@
 #include "chesselo.h"
-#include "GraphAnalysis_QT.h"
+#include "ChessAdjGraph.h"
+#include "chessmatrixgraph.h"
 ChessELO::ChessELO(QString _filename, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ChessELO)
@@ -7,7 +8,7 @@ ChessELO::ChessELO(QString _filename, QWidget *parent) :
     ui->setupUi(this);
     filename = _filename;
 
-    connect(ui->pushButton_Enter, SIGNAL(clicked()), this, SLOT(on_pushButton_Enter_clicked()));
+    //connect(ui->pushButton_Enter, SIGNAL(clicked()), this, SLOT(on_pushButton_Enter_clicked()));
 }
 
 void ChessELO::on_pushButton_Enter_clicked()
@@ -15,6 +16,7 @@ void ChessELO::on_pushButton_Enter_clicked()
     auto start = chrono::high_resolution_clock::now();
 
     QString playerName = ui->lineEdit_Name->text();
+
     /*if (playerName not found)
     {
         ui->nameLabel->setText("No data available");
@@ -22,10 +24,10 @@ void ChessELO::on_pushButton_Enter_clicked()
         ui->separationLabel->setText("No data available");
     }
     */
-    ChessGraph a(filename);
-    
+    ChessAdjGraph a(filename);
     
     vector<pair<string, int>> top = a.findTopN(playerName.toStdString(), 1);
+
     vector<string> dests = vector<string>();
     for (pair<string, int>& b : top)
     {

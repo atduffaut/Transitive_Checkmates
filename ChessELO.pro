@@ -9,13 +9,15 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    GraphAnalysis_QT.cpp \
+    ChessAdjGraph.cpp \
+    chessmatrixgraph.cpp \
     main.cpp \
     chesselo.cpp
 
 HEADERS += \
-    GraphAnalysis_QT.h \
-    chesselo.h
+    ChessAdjGraph.h \
+    chesselo.h \
+    chessmatrixgraph.h
 
 FORMS += \
     chesselo.ui
