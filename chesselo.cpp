@@ -22,12 +22,12 @@ void ChessELO::on_pushButton_Enter_clicked()
         ui->separationLabel->setText("No data available");
     }
     */
-    ChessGraph a(filename.toStdString());
+    ChessGraph a(filename);
     
     
     vector<pair<string, int>> top = a.findTopN(playerName.toStdString(), 1);
     vector<string> dests = vector<string>();
-    for (pair<string, int> b : top)
+    for (pair<string, int>& b : top)
     {
         dests.push_back(b.first);
     }
@@ -50,7 +50,7 @@ void ChessELO::on_pushButton_Enter_clicked()
         path = "No path found";
     else
     {
-        for (int i = 0; i < paths[0].size() - 1; i++)
+        for (unsigned int i = 0; i < paths[0].size() - 1; i++)
         {
             path += paths[0][i];
             path += " -> ";

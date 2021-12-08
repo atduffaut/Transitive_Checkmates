@@ -57,7 +57,7 @@ vector<pair<string, int>> ChessGraph::findTopN(string name, int n)
 }
 
 void ChessGraph::findTopNHelper(string curr,
-                                int n,
+                                unsigned int n,
                                 unordered_set<string>& visited,
                                 vector<pair<string, int>>& topN)
 {
@@ -69,7 +69,7 @@ void ChessGraph::findTopNHelper(string curr,
     for (pair<string, int> a : internalGraph[curr])
     {
         int found = -1;
-        for (int i = 0; i < topN.size(); i++)
+        for (unsigned int i = 0; i < topN.size(); i++)
         {
             if (topN[i].first == a.first)
                 found = i;
@@ -83,7 +83,7 @@ void ChessGraph::findTopNHelper(string curr,
         if (topN.size() > n)
         {
             int min = 0;
-            for (int i = 0; i < topN.size(); i++)
+            for (unsigned int i = 0; i < topN.size(); i++)
             {
                 if (topN[i].second < topN[min].second)
                     min = i;
@@ -113,7 +113,7 @@ vector<vector<string>> ChessGraph::findPath(string source, vector<string> dests)
     {
         string curr = q.front();
 
-        for (int i = 0; i < internalGraph[curr].size(); i++)
+        for (unsigned int i = 0; i < internalGraph[curr].size(); i++)
         {
             string target = internalGraph[curr][i].first;
 

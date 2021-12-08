@@ -2,6 +2,8 @@
 #include <unordered_map>
 #include <vector>
 #include <unordered_set>
+#include <QFile>
+#include <QApplication>
 using namespace std;
 
 class ChessGraph
@@ -19,12 +21,12 @@ private:
     };
 
 public:
-    ChessGraph(string filename);
+    ChessGraph(QString filename);
 
     vector<pair<string, int>> findTopN(string name, int n);
 
     void findTopNHelper(string curr,
-                        int n,
+                        unsigned int n,
                         unordered_set<string>& visited,
                         vector<pair<string, int>>& topN);
 
