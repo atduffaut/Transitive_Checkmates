@@ -8,6 +8,7 @@ ChessELO::ChessELO(QString _filename, QWidget *parent) :
     ui->setupUi(this);
     filename = _filename;
     ui->table->hide();
+    ui->table2->hide();
 
     //connect(ui->pushButton_Enter, SIGNAL(clicked()), this, SLOT(on_pushButton_Enter_clicked()));
     //connect(ui->pushButton_User, SIGNAL(clicked()), this, SLOT(on_pushButton_User_clicked()));
@@ -70,7 +71,7 @@ void ChessELO::on_pushButton_User_clicked()
             for (unsigned int j = 0; j < paths[i].size() - 1; j++)
             {
                 displayPaths[i] += paths[i][j];
-                displayPaths[i] += " -> ";
+                displayPaths[i] += " → ";
             }
             displayPaths[i] += paths[i][paths[i].size() - 1];
         }
@@ -121,6 +122,9 @@ void ChessELO::on_pushButton_Player_clicked()
    if(!initialized || userName == "")
        return;
 
+   QFont font;
+   font.setPointSize(12);
+
    auto start = chrono::high_resolution_clock::now();
 
 
@@ -137,7 +141,7 @@ void ChessELO::on_pushButton_Player_clicked()
         path = "";
         for (unsigned int i = 0; i < paths[0].size() - 1; i++) {
             path += paths[0][i];
-            path += " -> ";
+            path += " → ";
         }
         path += paths[0][paths[0].size() - 1];
     }
@@ -148,7 +152,17 @@ void ChessELO::on_pushButton_Player_clicked()
         pathLength = to_string(paths[0].size());
 
     string pathOutput = "Path: " + path + "          Path Length: " + pathLength;
-    ui->separationLabel->setText(QString::fromStdString(pathOutput));
+    //ui->separationLabel->setText(QString::fromStdString(pathOutput));
+
+    ui->table2->setItem(0,0,new QTableWidgetItem(playerName));
+    ui->table2->setItem(0,1,new QTableWidgetItem(QString::fromStdString(path)));
+    ui->table2->setItem(0,2,new QTableWidgetItem(QString::fromStdString(pathLength)));
+
+    ui->table2->setFont(font);
+    ui->table2->show();
+    ui->table2->resizeColumnToContents(0);
+    ui->table2->resizeColumnToContents(1);
+    ui->table2->resizeColumnToContents(2);
 
     auto end = chrono::high_resolution_clock::now();
 

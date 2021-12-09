@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
+    <width>811</width>
     <height>818</height>
    </rect>
   </property>
@@ -28,7 +28,7 @@
 color: rgb(0, 170, 255)</string>
     </property>
     <property name="text">
-     <string>Transitive Checkmates</string>
+     <string>♘ Transitive Checkmates ♘</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -126,7 +126,7 @@ color: rgb(0, 170, 255)</string>
    <widget class="QLabel" name="separationLabel">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>0</x>
       <y>650</y>
       <width>671</width>
       <height>24</height>
@@ -317,7 +317,7 @@ color: rgb(0, 170, 255)</string>
     </column>
     <item row="0" column="0">
      <property name="text">
-      <string>232323</string>
+      <string/>
      </property>
      <property name="font">
       <font>
@@ -552,7 +552,7 @@ color: rgb(0, 170, 255)</string>
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>690</y>
+      <y>720</y>
       <width>351</width>
       <height>37</height>
      </rect>
@@ -568,7 +568,7 @@ color: rgb(0, 170, 255)</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>690</y>
+      <y>720</y>
       <width>351</width>
       <height>37</height>
      </rect>
@@ -599,13 +599,88 @@ color: rgb(0, 170, 255)</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QTableWidget" name="table2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>630</y>
+      <width>411</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Path</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Path Length</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </item>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>820</width>
+     <width>811</width>
      <height>26</height>
     </rect>
    </property>
