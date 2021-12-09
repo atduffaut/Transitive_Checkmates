@@ -61,9 +61,9 @@ void ChessELO::on_pushButton_User_clicked()
     vector<vector<string>> paths = adjGraph.findPath(userName.toStdString(), dests);
     
     vector<string> displayPaths = vector<string>(5, "");
-    for(unsigned int i = 0; i < displayPaths.size(); i++)
+    for(unsigned int i = 0; i < paths.size(); i++)
     {
-        if (paths.empty())
+        if (paths[i].empty())
             displayPaths[i] = "No path found";
         else
         {
@@ -75,9 +75,17 @@ void ChessELO::on_pushButton_User_clicked()
             displayPaths[i] += paths[i][paths[i].size() - 1];
         }
     }
+    for(unsigned int i = paths.size(); i < displayPaths.size(); i++)
+        displayPaths[i] = "No path found";
 
     QFont font;
     font.setPointSize(12);
+
+    for(int i = top.size(); i < 5; i++)
+        top.push_back(pair<string, int>("No Player Found", 0));
+
+    for(int i = paths.size(); i < 5; i++)
+        paths.push_back(vector<string>());
 
     for (int i = 0; i < 5; i ++)
     {
@@ -100,8 +108,8 @@ void ChessELO::on_pushButton_User_clicked()
 
     start = chrono::high_resolution_clock::now();
 
-    matrixGraph.findTopN(userName.toStdString(), 5);
-    matrixGraph.findPath(userName.toStdString(), dests);
+    //matrixGraph.findTopN(userName.toStdString(), 5);
+    //matrixGraph.findPath(userName.toStdString(), dests);
 
     end = chrono::high_resolution_clock::now();
     int UserMatrixTime = chrono::duration_cast<chrono::milliseconds>(end - start).count();
