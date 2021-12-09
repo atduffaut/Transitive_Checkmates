@@ -16,18 +16,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    auto start = chrono::high_resolution_clock::now();
-
     ChessELO w(QString::fromStdString(""));
     w.show();
-
-    auto end = chrono::high_resolution_clock::now();
-
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-
-    cout << "Graph Generation and Window Opening: " << duration.count() << " ms" << endl;
-
-
     return a.exec();
 }

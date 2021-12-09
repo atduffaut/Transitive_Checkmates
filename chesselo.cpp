@@ -34,7 +34,7 @@ void ChessELO::on_pushButton_File_clicked()
     int ListBuildTime = adjDuration.count();
     int MatrixBuildTime = matrixDuration.count();
     ui->BuildListLabel->setText(QString::fromStdString("Adjacency List Build Time: " + to_string(ListBuildTime) + " ms"));
-    ui->BuildMatrixLabel->setText(QString::fromStdString("Adjacency List Build Time: " + to_string(MatrixBuildTime) + " ms"));
+    ui->BuildMatrixLabel->setText(QString::fromStdString("Adjacency Matrix Build Time: " + to_string(MatrixBuildTime) + " ms"));
 
     initialized = true;
 
@@ -61,7 +61,7 @@ void ChessELO::on_pushButton_User_clicked()
 
     ChessAdjGraph a(filename);
     
-    vector<pair<string, int>> top = a.findTopN(userName.toStdString(), 1);
+    vector<pair<string, int>> top = a.findTopN(userName.toStdString(), 5);
     
     vector<string> dests = vector<string>();
     for (pair<string, int>& b : top)
@@ -70,29 +70,20 @@ void ChessELO::on_pushButton_User_clicked()
     }
     vector<vector<string>> paths = a.findPath(userName.toStdString(), dests);
     
-    string topName;
-    if(!top.empty())
-        topName = top[0].first;
-    else
-        topName = "None";
-    
-    int elo;
-    if(!top.empty())
-        elo = top[0].second;
-    else
-        elo = 0;
-    
-    string path = "";
-    if (paths.empty())
-        path = "No path found";
-    else
+    vector<string> displayPaths = vector<string>(5, "");
+    for(unsigned int i = 0; i < displayPaths.size(); i++)
     {
-        for (unsigned int i = 0; i < paths[0].size() - 1; i++)
+        if (paths.empty())
+            displayPaths[i] = "No path found";
+        else
         {
-            path += paths[0][i];
-            path += " -> ";
+            for (unsigned int j = 0; j < paths[i].size() - 1; j++)
+            {
+                displayPaths[i] += paths[i][j];
+                displayPaths[i] += " -> ";
+            }
+            displayPaths[i] += paths[i][paths[i].size() - 1];
         }
-        path += paths[0][paths[0].size() - 1];
     }
 
     QFont font;
@@ -100,10 +91,10 @@ void ChessELO::on_pushButton_User_clicked()
 
     for (int i = 0; i < 5; i ++)
     {
-        ui->table->setItem(i,0,new QTableWidgetItem("efggggggggggggggf"));
-        ui->table->setItem(i,1,new QTableWidgetItem("eff"));
-        ui->table->setItem(i,2,new QTableWidgetItem("efeeeeeeggggggggggggggggggggggggggggggggggeeeeeeeeeeeeeeeeeeeef"));
-        ui->table->setItem(i,3,new QTableWidgetItem("eff"));
+        ui->table->setItem(i,0,new QTableWidgetItem(QString::fromStdString(top[i].first)));
+        ui->table->setItem(i,1,new QTableWidgetItem(QString::fromStdString(to_string(top[i].second))));
+        ui->table->setItem(i,2,new QTableWidgetItem(QString::fromStdString(displayPaths[i])));
+        ui->table->setItem(i,3,new QTableWidgetItem(QString::fromStdString(to_string(paths[i].size()))));
     }
 
     ui->table->setFont(font);
@@ -121,11 +112,11 @@ void ChessELO::on_pushButton_User_clicked()
     ui->UserListLabel->setText(QString::fromStdString("Adjacency List Search Time: " + to_string(UserListTime) + " milliseconds"));
     ui->UserMatrixLabel->setText(QString::fromStdString("Adjacency List Search Time: " + to_string(UserMatrixTime) + " milliseconds"));
 
-    ui->nameLabel->setText(QString::fromStdString(topName));
+    //ui->nameLabel->setText(QString::fromStdString(topName));
     
-    QString playerElo = QString::number(elo);
-    playerElo += " rating points";
-    ui->ELOLabel->setText(playerElo);
+    //QString playerElo = QString::number(elo);
+    //playerElo += " rating points";
+    //ui->ELOLabel->setText(playerElo);
     
     //ui->separationLabel_2->setText(QString::fromStdString(path));
 
