@@ -14,7 +14,9 @@ int main() {
     bool whiteWin = false;
     bool blackWin = false;
     bool active = false;
-    string filename = "C:/Users/alexd/Downloads/lichess_db_standard_rated_2021-10.pgn/lichess_db_standard_rated_2021-10";
+    string filename;
+    cout << "Input filename without extension: ";
+    cin >> filename;
     ifstream inFile(filename + ".pgn");
     ofstream outFile(filename + ".csv");
     if (inFile.is_open()) {
