@@ -2,6 +2,9 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_chesselo.h"
+#include "ChessAdjGraph.h"
+#include "chessmatrixgraph.h"
+
 class ChessELO : public QMainWindow
 {
     Q_OBJECT
@@ -12,8 +15,14 @@ public:
 private:
     Ui::ChessELO *ui;
     QString filename;
-    QString userName;
-    QString playerName;
+    QString userName = "";
+    QString playerName = "";
+
+    bool initialized;
+
+    ChessAdjGraph adjGraph;
+    ChessMatrixGraph matrixGraph;
+
 private slots:
     void on_pushButton_User_clicked();
     void on_pushButton_Exit_clicked();

@@ -19,15 +19,34 @@ void ChessELO::on_pushButton_File_clicked()
 {
     filename = ui->lineEdit_File->text();
     //construct graphs here, also calculate build time
-    int ListBuildTime = 20;
-    int MatrixBuildTime = 13;
-    ui->BuildListLabel->setText(QString::fromStdString("Adjacency List Build Time: " + to_string(ListBuildTime) + " milliseconds"));
-    ui->BuildMatrixLabel->setText(QString::fromStdString("Adjacency List Build Time: " + to_string(MatrixBuildTime) + " milliseconds"));
+
+    auto start = chrono::high_resolution_clock::now();
+    adjGraph = ChessAdjGraph(filename);
+    auto end = chrono::high_resolution_clock::now();
+    auto adjDuration = chrono::duration_cast<chrono::milliseconds>(end - start);
+
+
+    start = chrono::high_resolution_clock::now();
+    matrixGraph = ChessMatrixGraph(filename);
+    end = chrono::high_resolution_clock::now();
+    auto matrixDuration = chrono::duration_cast<chrono::milliseconds>(end - start);
+
+    int ListBuildTime = adjDuration.count();
+    int MatrixBuildTime = matrixDuration.count();
+    ui->BuildListLabel->setText(QString::fromStdString("Adjacency List Build Time: " + to_string(ListBuildTime) + " ms"));
+    ui->BuildMatrixLabel->setText(QString::fromStdString("Adjacency List Build Time: " + to_string(MatrixBuildTime) + " ms"));
+
+    initialized = true;
+
+    return;
 }
 
 
 void ChessELO::on_pushButton_User_clicked()
 {
+    if(!initialized)
+        return;
+
     auto start = chrono::high_resolution_clock::now();
 
     userName = ui->lineEdit_User->text();
@@ -119,6 +138,9 @@ void ChessELO::on_pushButton_User_clicked()
 
 void ChessELO::on_pushButton_Player_clicked()
 {
+   if(!initialized || userName == "")
+       return;
+
     playerName = ui->lineEdit_Player->text();
 
     string path = "wefwef->wefw->ergerg";

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.0, 2021-12-08T16:29:43. -->
+<!-- Written by QtCreator 6.0.0, 2021-12-09T14:20:08. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -250,7 +250,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseTerminal">true</value>
+    <value type="bool" key="RunConfiguration.UseTerminal">false</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory">/Users/matthewtave/Transitive_Checkmates</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/matthewtave/build-ChessELO-Qt_6_2_2_for_macOS-Debug/ChessELO.app/Contents/MacOS</value>
    </valuemap>

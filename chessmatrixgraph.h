@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <map>
 #include <vector>
@@ -24,6 +25,7 @@ private:
 
 public:
     ChessMatrixGraph(QString filename);
+    ChessMatrixGraph(){};
 
     vector<pair<string, int>> findTopN(string name, int n);
 

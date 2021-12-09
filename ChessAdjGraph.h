@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -22,6 +23,7 @@ private:
 
 public:
     ChessAdjGraph(QString filename);
+    ChessAdjGraph(){};
 
     vector<pair<string, int>> findTopN(string name, int n);
 
