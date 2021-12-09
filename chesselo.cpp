@@ -121,26 +121,48 @@ void ChessELO::on_pushButton_Player_clicked()
    if(!initialized || userName == "")
        return;
 
+   auto start = chrono::high_resolution_clock::now();
+
+
     playerName = ui->lineEdit_Player->text();
     vector<string> dests = vector<string>();
     dests.push_back(playerName.toStdString());
     vector<vector<string>> paths = adjGraph.findPath(userName.toStdString(), dests);
 
-    string path = "";
-    for (unsigned int i = 0; i < paths[0].size() - 1; i++) {
-        path += paths[0][i];
-        path += " -> ";
+    string path;
+    if(paths[0].empty())
+        path = "No path found";
+    else
+    {
+        path = "";
+        for (unsigned int i = 0; i < paths[0].size() - 1; i++) {
+            path += paths[0][i];
+            path += " -> ";
+        }
+        path += paths[0][paths[0].size() - 1];
     }
-    path += paths[0][paths[0].size() - 1];
-    string pathLength = to_string(paths[0].size());
+
+    string pathLength = "0";
+
+    if(!paths[0].empty())
+        pathLength = to_string(paths[0].size());
+
     string pathOutput = "Path: " + path + "          Path Length: " + pathLength;
     ui->separationLabel->setText(QString::fromStdString(pathOutput));
 
-    int PlayerListTime = 20;
-    int PlayerMatrixTime = 13;
+    auto end = chrono::high_resolution_clock::now();
 
-    ui->PlayerListLabel->setText(QString::fromStdString("Adjacency List Search Time: " + to_string(PlayerListTime) + " milliseconds"));
-    ui->PlayerMatrixLabel->setText(QString::fromStdString("Adjacency Matrix Search Time: " + to_string(PlayerMatrixTime) + " milliseconds"));
+    int PlayerListTime = chrono::duration_cast<chrono::milliseconds>(end - start).count();;
+    ui->PlayerListLabel->setText(QString::fromStdString("Adjacency List Search Time: " + to_string(PlayerListTime) + " ms"));
+
+    start = chrono::high_resolution_clock::now();
+
+    matrixGraph.findPath(userName.toStdString(), dests);
+
+    end = chrono::high_resolution_clock::now();
+
+    int PlayerMatrixTime = chrono::duration_cast<chrono::milliseconds>(end - start).count();;
+    ui->PlayerMatrixLabel->setText(QString::fromStdString("Adjacency Matrix Search Time: " + to_string(PlayerMatrixTime) + " ms"));
 }
 
 void ChessELO::on_pushButton_Exit_clicked()
