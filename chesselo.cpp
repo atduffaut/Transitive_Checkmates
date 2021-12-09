@@ -122,15 +122,19 @@ void ChessELO::on_pushButton_Player_clicked()
        return;
 
     playerName = ui->lineEdit_Player->text();
+    vector<string> dests = vector<string>();
+    dests.push_back(playerName.toStdString());
+    vector<vector<string>> paths = adjGraph.findPath(userName.toStdString(), dests);
 
-    string path = "wefwef->wefw->ergerg";
-    string pathLength = "3";
-    string ELO = "1546";
+    string path = "";
+    for (unsigned int i = 0; i < paths[0].size() - 1; i++) {
+        path += paths[0][i];
+        path += " -> ";
+    }
+    path += paths[0][paths[0].size() - 1];
+    string pathLength = to_string(paths[0].size());
     string pathOutput = "Path: " + path + "          Path Length: " + pathLength;
     ui->separationLabel->setText(QString::fromStdString(pathOutput));
-
-    string nameELO = "Player Name: " + playerName.toStdString() + "          Player ELO: " + ELO;
-    ui->label_2->setText(QString::fromStdString(nameELO));
 
     int PlayerListTime = 20;
     int PlayerMatrixTime = 13;
