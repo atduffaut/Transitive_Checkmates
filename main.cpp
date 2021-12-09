@@ -15,14 +15,11 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    string filename;
-    cin >> filename;
-
     QApplication a(argc, argv);
 
     auto start = chrono::high_resolution_clock::now();
 
-    ChessELO w(QString::fromStdString(filename));
+    ChessELO w(QString::fromStdString(""));
     w.show();
 
     auto end = chrono::high_resolution_clock::now();

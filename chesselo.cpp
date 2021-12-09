@@ -30,7 +30,7 @@ void ChessELO::on_pushButton_User_clicked()
 {
     auto start = chrono::high_resolution_clock::now();
 
-    QString playerName = ui->lineEdit_Name->text();
+    userName = ui->lineEdit_User->text();
     
     /*if (playerName not found)
     {
@@ -42,8 +42,7 @@ void ChessELO::on_pushButton_User_clicked()
 
     ChessAdjGraph a(filename);
     
-    vector<pair<string, int>> top = a.findTopN(playerName.toStdString(), 1);
-
+    vector<pair<string, int>> top = a.findTopN(userName.toStdString(), 1);
     
     vector<string> dests = vector<string>();
     for (pair<string, int>& b : top)
