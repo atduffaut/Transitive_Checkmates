@@ -128,7 +128,7 @@ void ChessELO::on_pushButton_Player_clicked()
     int PlayerMatrixTime = 13;
 
     ui->PlayerListLabel->setText(QString::fromStdString("Adjacency List Search Time: " + to_string(PlayerListTime) + " milliseconds"));
-    ui->PlayerMatrixLabel->setText(QString::fromStdString("Adjacency List Search Time: " + to_string(PlayerMatrixTime) + " milliseconds"));
+    ui->PlayerMatrixLabel->setText(QString::fromStdString("Adjacency Matrix Search Time: " + to_string(PlayerMatrixTime) + " milliseconds"));
 }
 
 void ChessELO::on_pushButton_Exit_clicked()

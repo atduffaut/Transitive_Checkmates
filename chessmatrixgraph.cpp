@@ -1,5 +1,5 @@
 #include "chessmatrixgraph.h"
-#include <set>
+#include <unordered_set>
 #include <cmath>
 #include <unordered_map>
 #include <queue>
@@ -14,7 +14,7 @@ ChessMatrixGraph::ChessMatrixGraph(QString filename)
         cout << "error" << endl;
     }
 
-    set<string> namesSet = set<string>();
+    unordered_set<string> namesSet = unordered_set<string>();
 
 
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <unordered_set>
 #include <QFile>
@@ -10,8 +10,8 @@ using namespace std;
 class ChessMatrixGraph
 {
 private:
-    map<string, int> names;
-    map<int, string> nums;
+    unordered_map<string, int> names;
+    unordered_map<int, string> nums;
     vector<vector<int>> edges;
 
     class compareEdges
