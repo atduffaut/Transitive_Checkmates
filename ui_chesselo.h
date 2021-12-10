@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'chesselo.ui'
 **
-** Created by: Qt User Interface Compiler version 6.1.3
+** Created by: Qt User Interface Compiler version 6.2.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -70,7 +70,12 @@ public:
         titleLabel = new QLabel(centralwidget);
         titleLabel->setObjectName(QString::fromUtf8("titleLabel"));
         titleLabel->setGeometry(QRect(0, 10, 761, 31));
-        titleLabel->setStyleSheet(QString::fromUtf8("font: 700 20pt \"Calibri\";\n"
+        QFont font;
+        font.setPointSize(40);
+        font.setBold(true);
+        font.setItalic(false);
+        titleLabel->setFont(font);
+        titleLabel->setStyleSheet(QString::fromUtf8("font: 700 40pt \"Calibri\";\n"
 "color: rgb(0, 170, 255)"));
         titleLabel->setAlignment(Qt::AlignCenter);
         ELOLabel = new QLabel(centralwidget);
@@ -171,19 +176,19 @@ public:
         table = new QTableWidget(centralwidget);
         if (table->columnCount() < 4)
             table->setColumnCount(4);
-        QFont font;
-        font.setPointSize(12);
+        QFont font1;
+        font1.setPointSize(12);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        __qtablewidgetitem->setFont(font);
+        __qtablewidgetitem->setFont(font1);
         table->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        __qtablewidgetitem1->setFont(font);
+        __qtablewidgetitem1->setFont(font1);
         table->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        __qtablewidgetitem2->setFont(font);
+        __qtablewidgetitem2->setFont(font1);
         table->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        __qtablewidgetitem3->setFont(font);
+        __qtablewidgetitem3->setFont(font1);
         table->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         if (table->rowCount() < 5)
             table->setRowCount(5);
@@ -198,64 +203,64 @@ public:
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
         table->setVerticalHeaderItem(4, __qtablewidgetitem8);
         QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
-        __qtablewidgetitem9->setFont(font);
+        __qtablewidgetitem9->setFont(font1);
         table->setItem(0, 0, __qtablewidgetitem9);
         QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
-        __qtablewidgetitem10->setFont(font);
+        __qtablewidgetitem10->setFont(font1);
         table->setItem(0, 1, __qtablewidgetitem10);
         QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
-        __qtablewidgetitem11->setFont(font);
+        __qtablewidgetitem11->setFont(font1);
         table->setItem(0, 2, __qtablewidgetitem11);
         QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
-        __qtablewidgetitem12->setFont(font);
+        __qtablewidgetitem12->setFont(font1);
         table->setItem(0, 3, __qtablewidgetitem12);
         QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
-        __qtablewidgetitem13->setFont(font);
+        __qtablewidgetitem13->setFont(font1);
         table->setItem(1, 0, __qtablewidgetitem13);
         QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
-        __qtablewidgetitem14->setFont(font);
+        __qtablewidgetitem14->setFont(font1);
         table->setItem(1, 1, __qtablewidgetitem14);
         QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
-        __qtablewidgetitem15->setFont(font);
+        __qtablewidgetitem15->setFont(font1);
         table->setItem(1, 2, __qtablewidgetitem15);
         QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
-        __qtablewidgetitem16->setFont(font);
+        __qtablewidgetitem16->setFont(font1);
         table->setItem(1, 3, __qtablewidgetitem16);
         QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
-        __qtablewidgetitem17->setFont(font);
+        __qtablewidgetitem17->setFont(font1);
         table->setItem(2, 0, __qtablewidgetitem17);
         QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
-        __qtablewidgetitem18->setFont(font);
+        __qtablewidgetitem18->setFont(font1);
         table->setItem(2, 1, __qtablewidgetitem18);
         QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
-        __qtablewidgetitem19->setFont(font);
+        __qtablewidgetitem19->setFont(font1);
         table->setItem(2, 2, __qtablewidgetitem19);
         QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
-        __qtablewidgetitem20->setFont(font);
+        __qtablewidgetitem20->setFont(font1);
         table->setItem(2, 3, __qtablewidgetitem20);
         QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
-        __qtablewidgetitem21->setFont(font);
+        __qtablewidgetitem21->setFont(font1);
         table->setItem(3, 0, __qtablewidgetitem21);
         QTableWidgetItem *__qtablewidgetitem22 = new QTableWidgetItem();
-        __qtablewidgetitem22->setFont(font);
+        __qtablewidgetitem22->setFont(font1);
         table->setItem(3, 1, __qtablewidgetitem22);
         QTableWidgetItem *__qtablewidgetitem23 = new QTableWidgetItem();
-        __qtablewidgetitem23->setFont(font);
+        __qtablewidgetitem23->setFont(font1);
         table->setItem(3, 2, __qtablewidgetitem23);
         QTableWidgetItem *__qtablewidgetitem24 = new QTableWidgetItem();
-        __qtablewidgetitem24->setFont(font);
+        __qtablewidgetitem24->setFont(font1);
         table->setItem(3, 3, __qtablewidgetitem24);
         QTableWidgetItem *__qtablewidgetitem25 = new QTableWidgetItem();
-        __qtablewidgetitem25->setFont(font);
+        __qtablewidgetitem25->setFont(font1);
         table->setItem(4, 0, __qtablewidgetitem25);
         QTableWidgetItem *__qtablewidgetitem26 = new QTableWidgetItem();
-        __qtablewidgetitem26->setFont(font);
+        __qtablewidgetitem26->setFont(font1);
         table->setItem(4, 1, __qtablewidgetitem26);
         QTableWidgetItem *__qtablewidgetitem27 = new QTableWidgetItem();
-        __qtablewidgetitem27->setFont(font);
+        __qtablewidgetitem27->setFont(font1);
         table->setItem(4, 2, __qtablewidgetitem27);
         QTableWidgetItem *__qtablewidgetitem28 = new QTableWidgetItem();
-        __qtablewidgetitem28->setFont(font);
+        __qtablewidgetitem28->setFont(font1);
         table->setItem(4, 3, __qtablewidgetitem28);
         table->setObjectName(QString::fromUtf8("table"));
         table->setGeometry(QRect(50, 290, 681, 181));
@@ -284,33 +289,33 @@ public:
         if (table2->columnCount() < 3)
             table2->setColumnCount(3);
         QTableWidgetItem *__qtablewidgetitem29 = new QTableWidgetItem();
-        __qtablewidgetitem29->setFont(font);
+        __qtablewidgetitem29->setFont(font1);
         table2->setHorizontalHeaderItem(0, __qtablewidgetitem29);
         QTableWidgetItem *__qtablewidgetitem30 = new QTableWidgetItem();
-        __qtablewidgetitem30->setFont(font);
+        __qtablewidgetitem30->setFont(font1);
         table2->setHorizontalHeaderItem(1, __qtablewidgetitem30);
         QTableWidgetItem *__qtablewidgetitem31 = new QTableWidgetItem();
-        __qtablewidgetitem31->setFont(font);
+        __qtablewidgetitem31->setFont(font1);
         table2->setHorizontalHeaderItem(2, __qtablewidgetitem31);
         if (table2->rowCount() < 1)
             table2->setRowCount(1);
         QTableWidgetItem *__qtablewidgetitem32 = new QTableWidgetItem();
         table2->setVerticalHeaderItem(0, __qtablewidgetitem32);
         QTableWidgetItem *__qtablewidgetitem33 = new QTableWidgetItem();
-        __qtablewidgetitem33->setFont(font);
+        __qtablewidgetitem33->setFont(font1);
         table2->setItem(0, 0, __qtablewidgetitem33);
         QTableWidgetItem *__qtablewidgetitem34 = new QTableWidgetItem();
-        __qtablewidgetitem34->setFont(font);
+        __qtablewidgetitem34->setFont(font1);
         table2->setItem(0, 1, __qtablewidgetitem34);
         QTableWidgetItem *__qtablewidgetitem35 = new QTableWidgetItem();
-        __qtablewidgetitem35->setFont(font);
+        __qtablewidgetitem35->setFont(font1);
         table2->setItem(0, 2, __qtablewidgetitem35);
         table2->setObjectName(QString::fromUtf8("table2"));
-        table2->setGeometry(QRect(150, 630, 411, 81));
+        table2->setGeometry(QRect(210, 630, 361, 61));
         ChessELO->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ChessELO);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 811, 26));
+        menubar->setGeometry(QRect(0, 0, 811, 21));
         ChessELO->setMenuBar(menubar);
         statusbar = new QStatusBar(ChessELO);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

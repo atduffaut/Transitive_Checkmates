@@ -109,8 +109,8 @@ void ChessELO::on_pushButton_User_clicked()
 
     start = chrono::high_resolution_clock::now();
 
-    //matrixGraph.findTopN(userName.toStdString(), 5);
-    //matrixGraph.findPath(userName.toStdString(), dests);
+    matrixGraph.findTopN(userName.toStdString(), 5);
+    matrixGraph.findPath(userName.toStdString(), dests);
 
     end = chrono::high_resolution_clock::now();
     int UserMatrixTime = chrono::duration_cast<chrono::milliseconds>(end - start).count();
